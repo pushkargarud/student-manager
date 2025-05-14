@@ -59,6 +59,8 @@
                 <th>coursemark</th>
                 <th>exammark</th>
                 <th>Total Marks</th>
+                <th>Final Marks</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -71,6 +73,8 @@
                     <td>{{ student.module }}</td>
                     <td>{{ student.coursemark }}</td>
                     <td>{{ student.exammark }}</td>
+                    <td>{{ student.final_grade}}</td>
+                    <td>{{ student.status }}</td>                  
                     <td>{{student.coursemark + student.exammark }}</td>
             </tr>
             {% endfor %}

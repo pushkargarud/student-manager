@@ -21,6 +21,10 @@ def add_students():
         coursemark = request.form['coursemark']
         exammark = request.form['exammark']
 
+        #calculate final mark
+        final_grade=(int(coursemark)*0.4)+(int(exammark)*0.6)
+        status = "Pass" if final_grade>=50 else "Fail"
+        
         with shelve.open(module, writeback=True) as db:
             print(f"Adding student to module: {module}")  # Debug print
             if number in db:
@@ -32,7 +36,9 @@ def add_students():
                 "forename": forename,
                 "surname": surname,
                 "coursemark": int(coursemark),
-                "exammark": int(exammark)
+                "exammark": int(exammark),
+                "final_grade": final_grade,
+                "status": status
             }
         return redirect(url_for('index'))
 
@@ -61,6 +67,10 @@ def update_students():
                 coursemark = request.form['coursemark']
                 exammark = request.form['exammark']
 
+            #Recalculate final mark
+                final_grade= (int(coursemark)*4.0)+(int(exammark)*0.6)
+                status="Pass" if final_grade>50 else "Fail"
+
                 with shelve.open(module, writeback=True) as db:
                     if number in db:
                         db[number]={
@@ -70,7 +80,10 @@ def update_students():
                         "forename": forename,
                         "surname": surname,
                         "coursemark": int(coursemark),
-                        "exammark": int(exammark)
+                        "exammark": int(exammark),
+                        "final_grade": final_grade,
+                        "status": status
+
 
                         }
 
