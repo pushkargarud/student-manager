@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+    <h1>Add a New Student</h1>
+
+    <form method="POST">
+        <label>Student Number:</label><br>
+        <input type="text" name="number" required><br>
+
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br>
+
+        <label>Forename:</label><br>
+        <input type="text" name="forename" required><br>
+
+        <label>Surname:</label><br>
+        <input type="text" name="surname" required><br>
+
+        <label>Module Name:</label><br>
+        <input type="text" name="module" required><br>
+
+        <label>Coursework Mark:</label><br>
+        <input type="number" name="coursemark" required><br>
+
+        <label>Exam Mark:</label><br>
+        <input type="number" name="exammark" required><br><br>
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
