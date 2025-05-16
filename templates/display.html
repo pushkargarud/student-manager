@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+        }
+        a.button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Students in Module: {{ module }}</h1>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% elif students %}
+    <table>
+        <thead>
+            <tr>
+                <th>Student Number </th>
+                <th>Title</th>
+                <th>Forename</th>
+                <th>Surname</th>
+                <th>Module name</th>
+                <th>coursemark</th>
+                <th>exammark</th>
+                <th>Total Marks</th>
+                <th>Final Marks</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                    <th>{{student.number}}</th>
+                    <th>{{student.title}}</th>
+                    <td>{{ student.forename }}</td>
+                    <td>{{ student.surname }}</td>
+                    <td>{{ student.module }}</td>
+                    <td>{{ student.coursemark }}</td>
+                    <td>{{ student.exammark }}</td>
+                    <td>{{ student.final_grade}}</td>
+                    <td>{{ student.status }}</td>                  
+                    <td>{{student.coursemark + student.exammark }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p> No Students found</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('add_students') }}" class="button">Add Student</a>
+    <a href="{{ url_for('index') }}" class="button">Back to Home</a>
+</body>
+</html>

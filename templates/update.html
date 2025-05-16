@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Student</title>
+</head>
+<body>
+    <h1>Update Student Details</h1>
+
+    <!-- Lookup Step -->
+    {% if step == 'lookup' %}
+        <form method="POST">
+            <input type="hidden" name="step" value="lookup">
+            <label>Student Number:</label><br>
+            <input type="text" name="number" required><br>
+
+            <label>Module Name:</label><br>
+            <input type="text" name="module" required><br><br>
+
+            <button type="submit">Lookup Student</button>
+        </form>
+
+        {% if error %}
+            <p style="color: red">{{ error }}</p>
+        {% endif %}
+    {% elif step == 'edit' %}
+        <!-- Edit Form -->
+        <form method="POST">
+            <input type="hidden" name="step" value="edit">
+            <input type="hidden" name="number" value="{{ student.number }}">
+            <input type="hidden" name="module" value="{{ student.module }}">
+
+            <label>Title:</label><br>
+            <input type="text" name="title" value="{{ student.title }}" required><br>
+
+            <label>Forename:</label><br>
+            <input type="text" name="forename" value="{{ student.forename }}" required><br>
+
+            <label>Surname:</label><br>
+            <input type="text" name="surname" value="{{ student.surname }}" required><br>
+
+            <label>Coursework Mark:</label><br>
+            <input type="number" name="coursemark" value="{{ student.coursemark }}" required><br>
+
+            <label>Exam Mark:</label><br>
+            <input type="number" name="exammark" value="{{ student.exammark }}" required><br><br>
+
+            <button type="submit">Update</button>
+        </form>
+    {% endif %}
+    <a href="{{ url_for('index') }}">
+        <button type="button">Home</button>
+        </a>
+</body>
+</html>

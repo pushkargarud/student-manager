@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Results</title>
+</head>
+<body>
+    <h1>Student Information for ID: {{ student_number }}</h1>
+    
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% else %}
+        <ul>
+            {% for student in students %}
+                <li>
+                    Name: {{ student.title }} {{ student.forename }} {{ student.surname }} <br>
+                    Module: {{ student.module }} <br>
+                    ID: {{ student.number }} <br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <a href="{{ url_for('find_student') }}">Search Again</a>
+
+</body>
+</html>
